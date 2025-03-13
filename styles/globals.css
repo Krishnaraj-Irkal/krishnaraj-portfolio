@@ -38,10 +38,11 @@ body {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-40px);
   }
 }
 
 .animate-bounce {
   animation: slow-bounce 2s ease-in-out infinite;
 }
+

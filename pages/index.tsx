@@ -1,5 +1,7 @@
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
+import AboutSection from '../components/About'
+import SkillsSection from '../components/SkillsSection'
 
 export default function Home() {
   return (
@@ -7,6 +9,8 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <AboutSection />
+        <SkillsSection />
       </main>
     </div>
   )
