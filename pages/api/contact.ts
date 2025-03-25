@@ -1,7 +1,9 @@
 // pages/api/contact.js
 import { sendUserReply, sendAdminNotification } from '../../lib/emailService';
 
-export default async function handler(req: any, res: any) {
+import { NextApiRequest, NextApiResponse } from 'next';
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     // Only allow POST requests
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method Not Allowed' });
