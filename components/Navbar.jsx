@@ -6,39 +6,38 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  
+
   const navLinks = [
-    { id: 'home', href: '#hero', text: 'Home' },
-    { id: 'about', href: '#about', text: 'About' },
-    { id: 'skills', href: '#skills', text: 'Skills' },
-    { id: 'projects', href: '#projects', text: 'Projects' },
-    { id: 'contact', href: '#contact', text: 'Contact' },
+    { id: 'home', href: '/#hero', text: 'Home' },
+    { id: 'about', href: '/#about', text: 'About' },
+    { id: 'skills', href: '/#skills', text: 'Skills' },
+    { id: 'projects', href: '/#projects', text: 'Projects' },
+    { id: 'contact', href: '/#contact', text: 'Contact' },
   ];
-  
+
   // Detect scroll position to change navbar appearance
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   return (
-    <motion.header 
+    <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-neutral-900/95 backdrop-blur-sm shadow-lg' : 'bg-neutral-900'
-      }`}
+      className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-neutral-900/95 backdrop-blur-sm shadow-lg' : 'bg-neutral-900'
+        }`}
     >
       <div className="container mx-auto px-2 sm:px-6 lg:px-1">
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
           <motion.div whileHover={{ scale: 1.05 }}>
-            <Link href="#hero" className="flex items-center space-x-3 group">
+            <Link href="/" className="flex items-center space-x-3 group">
               <motion.div
                 whileHover={{ rotate: 15 }}
                 className="p-2 rounded-lg bg-blue-600 group-hover:bg-blue-700 transition-all duration-300"
@@ -52,7 +51,7 @@ const Navbar = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                 </svg>
               </motion.div>
               <motion.span
@@ -67,7 +66,7 @@ const Navbar = () => {
               </motion.span>
             </Link>
           </motion.div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
@@ -86,7 +85,7 @@ const Navbar = () => {
               </motion.div>
             ))}
           </div>
-          
+
           {/* Mobile Menu Button */}
           <motion.button
             whileHover={{ scale: 1.1 }}
@@ -102,7 +101,7 @@ const Navbar = () => {
             )}
           </motion.button>
         </div>
-        
+
         {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
@@ -116,13 +115,19 @@ const Navbar = () => {
               <div className="pt-2 pb-3 space-y-1">
                 {navLinks.map((link) => (
                   <Link
-                    key={link.id}
-                    href={link.href}
-                    className="block px-4 py-3 text-gray-300 hover:bg-blue-700/20 hover:text-white rounded-lg transition-all duration-300"
-                    onClick={() => setIsMenuOpen(false)}
+                    href={`/${link.href}`}
+                    scroll={false}
+                    shallow={true}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.history.pushState(null, "", link.href); // Update URL hash without reload
+                      document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="px-3 py-2 text-gray-300 hover:text-blue-500 font-medium transition-colors duration-300 relative group"
                   >
                     {link.text}
                   </Link>
+
                 ))}
               </div>
             </motion.div>
