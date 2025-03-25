@@ -1,0 +1,14 @@
+# This section applies to all web crawlers.
+User-agent: *
+# Allow access to all pages by default.
+Allow: /
+# Block access to specific folders or files that you don't want indexed.
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /drafts/
+# Optionally, you can set a crawl-delay (in seconds) for slower crawlers.
+Crawl-delay: 5
+
+# Sitemap location to help search engines find all your pages.
+Sitemap: https://www.krishnarajirkal.com/sitemap.xml
