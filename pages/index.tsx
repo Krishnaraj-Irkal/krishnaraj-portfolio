@@ -26,7 +26,7 @@ export default function Home() {
           <Hero />
           <AboutSection />
           <SkillsSection />
-          <ProjectsSection />
+{/*           <ProjectsSection /> */}
           <ContactSection />
 
         </main>
