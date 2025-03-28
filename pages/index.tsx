@@ -2,7 +2,7 @@ import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import AboutSection from '../components/About'
 import SkillsSection from '../components/SkillsSection'
-import ProjectsSection from '../components/Projects'
+// import ProjectsSection from '../components/Projects'
 import ContactSection from '../components/Contact'
 import Footer from '../components/Footer'
 import { NextSeo } from "next-seo";
